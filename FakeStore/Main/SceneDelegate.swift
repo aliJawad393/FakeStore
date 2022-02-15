@@ -18,7 +18,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let navController = UINavigationController()
-        let controller = ViewController(viewModel: ProductsListViewModel(dataSource: ProductsNetworkService(session: URLSession.shared, baseURL: URL(string: "https://fakestoreapi.com/")!, parser: JSONParser()), networkNotifier: ReachabilityNetworkNotifier()))
+        let controller = ProductsListViewController(viewModel: ProductsListViewModel(dataSource: ProductsNetworkService(session: URLSession.shared, baseURL: URL(string: "https://fakestoreapi.com/")!, parser: JSONParser()), networkNotifier: ReachabilityNetworkNotifier()))
         navController.viewControllers = [controller]
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

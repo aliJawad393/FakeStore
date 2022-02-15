@@ -22,11 +22,21 @@ struct ProductPresenter {
         id = product.id
         title = product.title
         description = product.description
-        category = product.category
+        category = product.category.capitalized
         imageURL = URL(string: product.imageUrl)
         price = "$\(product.price)"
         rate = "\(product.rating.rate)"
         noOfRatings = "\(product.rating.count)"
+    }
+}
+
+extension ProductPresenter: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: ProductPresenter, rhs: ProductPresenter) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
