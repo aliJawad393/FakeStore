@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ProductRepository {
+    @discardableResult 
     func getProductsList(response: @escaping((Result<[Product], Error>) -> Void)) -> Cancellable?
 }

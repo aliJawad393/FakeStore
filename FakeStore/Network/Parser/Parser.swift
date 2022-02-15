@@ -1,10 +1,3 @@
-//
-//  Parser.swift
-//  Weather Sample App
-//
-//  Created by Ali Jawad on 08/02/2022.
-//
-
 import Foundation
 
 protocol Parser {

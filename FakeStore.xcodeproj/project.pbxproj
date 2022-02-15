@@ -10,6 +10,15 @@
 		416315E227BBC43B000C41E5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E127BBC43B000C41E5 /* Product.swift */; };
 		416315E427BBC4CF000C41E5 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E327BBC4CF000C41E5 /* ProductRepository.swift */; };
 		416315E727BBC502000C41E5 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E627BBC502000C41E5 /* Cancellable.swift */; };
+		416315EF27BBD0B9000C41E5 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315EA27BBD0B9000C41E5 /* Parser.swift */; };
+		416315F027BBD0B9000C41E5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315EC27BBD0B9000C41E5 /* Service.swift */; };
+		416315F127BBD0B9000C41E5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315ED27BBD0B9000C41E5 /* Router.swift */; };
+		416315F227BBD0B9000C41E5 /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315EE27BBD0B9000C41E5 /* URLRequestConvertible.swift */; };
+		416315F527BBD11D000C41E5 /* ProductRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315F427BBD11D000C41E5 /* ProductRouter.swift */; };
+		416315FA27BBD1BE000C41E5 /* Product+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315F927BBD1BE000C41E5 /* Product+Decodable.swift */; };
+		416315FD27BBD525000C41E5 /* ProductsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315FC27BBD525000C41E5 /* ProductsNetworkService.swift */; };
+		4163160027BBD64F000C41E5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315FF27BBD64F000C41E5 /* NetworkError.swift */; };
+		4163160227BBD71E000C41E5 /* CancellableDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163160127BBD71E000C41E5 /* CancellableDataTask.swift */; };
 		417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39027BBAF7500A88E58 /* AppDelegate.swift */; };
 		417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39227BBAF7500A88E58 /* SceneDelegate.swift */; };
 		417AA39527BBAF7500A88E58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39427BBAF7500A88E58 /* ViewController.swift */; };
@@ -42,6 +51,15 @@
 		416315E127BBC43B000C41E5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		416315E327BBC4CF000C41E5 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		416315E627BBC502000C41E5 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		416315EA27BBD0B9000C41E5 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		416315EC27BBD0B9000C41E5 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		416315ED27BBD0B9000C41E5 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		416315EE27BBD0B9000C41E5 /* URLRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
+		416315F427BBD11D000C41E5 /* ProductRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRouter.swift; sourceTree = "<group>"; };
+		416315F927BBD1BE000C41E5 /* Product+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+Decodable.swift"; sourceTree = "<group>"; };
+		416315FC27BBD525000C41E5 /* ProductsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsNetworkService.swift; sourceTree = "<group>"; };
+		416315FF27BBD64F000C41E5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		4163160127BBD71E000C41E5 /* CancellableDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableDataTask.swift; sourceTree = "<group>"; };
 		417AA38D27BBAF7500A88E58 /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		417AA39027BBAF7500A88E58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		417AA39227BBAF7500A88E58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,8 +130,71 @@
 			isa = PBXGroup;
 			children = (
 				416315E627BBC502000C41E5 /* Cancellable.swift */,
+				4163160127BBD71E000C41E5 /* CancellableDataTask.swift */,
 			);
 			path = Cancellable;
+			sourceTree = "<group>";
+		};
+		416315E827BBD0B2000C41E5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				416315F827BBD1A3000C41E5 /* Model */,
+				416315EB27BBD0B9000C41E5 /* Base */,
+				416315E927BBD0B9000C41E5 /* Parser */,
+				416315F327BBD100000C41E5 /* Router */,
+				416315FB27BBD50C000C41E5 /* Service */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		416315E927BBD0B9000C41E5 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				416315EA27BBD0B9000C41E5 /* Parser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		416315EB27BBD0B9000C41E5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				416315EC27BBD0B9000C41E5 /* Service.swift */,
+				416315ED27BBD0B9000C41E5 /* Router.swift */,
+				416315EE27BBD0B9000C41E5 /* URLRequestConvertible.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		416315F327BBD100000C41E5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				416315F427BBD11D000C41E5 /* ProductRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		416315F827BBD1A3000C41E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				416315F927BBD1BE000C41E5 /* Product+Decodable.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		416315FB27BBD50C000C41E5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				416315FC27BBD525000C41E5 /* ProductsNetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		416315FE27BBD646000C41E5 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				416315FF27BBD64F000C41E5 /* NetworkError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		417AA38427BBAF7500A88E58 = {
@@ -139,6 +220,8 @@
 		417AA38F27BBAF7500A88E58 /* FakeStore */ = {
 			isa = PBXGroup;
 			children = (
+				416315FE27BBD646000C41E5 /* Error */,
+				416315E827BBD0B2000C41E5 /* Network */,
 				416315E527BBC4F9000C41E5 /* Cancellable */,
 				416315E027BBC3FD000C41E5 /* Model */,
 				416315DF27BBC3F4000C41E5 /* View */,
@@ -300,8 +383,17 @@
 			files = (
 				416315E727BBC502000C41E5 /* Cancellable.swift in Sources */,
 				417AA39527BBAF7500A88E58 /* ViewController.swift in Sources */,
+				416315F127BBD0B9000C41E5 /* Router.swift in Sources */,
 				417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */,
+				416315FD27BBD525000C41E5 /* ProductsNetworkService.swift in Sources */,
+				416315F527BBD11D000C41E5 /* ProductRouter.swift in Sources */,
+				416315FA27BBD1BE000C41E5 /* Product+Decodable.swift in Sources */,
+				4163160227BBD71E000C41E5 /* CancellableDataTask.swift in Sources */,
 				416315E227BBC43B000C41E5 /* Product.swift in Sources */,
+				416315EF27BBD0B9000C41E5 /* Parser.swift in Sources */,
+				4163160027BBD64F000C41E5 /* NetworkError.swift in Sources */,
+				416315F027BBD0B9000C41E5 /* Service.swift in Sources */,
+				416315F227BBD0B9000C41E5 /* URLRequestConvertible.swift in Sources */,
 				417AA39B27BBAF7500A88E58 /* FakeStore.xcdatamodeld in Sources */,
 				417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */,
 				416315E427BBC4CF000C41E5 /* ProductRepository.swift in Sources */,
