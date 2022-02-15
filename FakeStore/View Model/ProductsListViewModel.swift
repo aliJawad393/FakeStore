@@ -43,6 +43,7 @@ extension ProductPresenter: Hashable {
 protocol ProductsListVM {
     var productsList: PassthroughSubject<[ProductPresenter], Never> {get}
     var error: PassthroughSubject<Error, Never> {get}
+    func fetchProrductsList()
 }
 
 final class ProductsListViewModel: ProductsListVM {
@@ -58,6 +59,7 @@ final class ProductsListViewModel: ProductsListVM {
         self.dataSource = dataSource
         self.networkNotifier = networkNotifier
         self.networkNotifier.whenReachable = onNetworkReachable
+        self.networkNotifier.whenUnreachable = onNetworkUnreachable
     }
     
     func fetchProrductsList() {
@@ -80,11 +82,12 @@ private extension ProductsListViewModel {
     func onNetworkReachable() {
         print("Network reachable")
         fetchProrductsList()
+        
     }
     
     func onNetworkUnreachable() {
         print("Network unreachable")
         error.send(NetworkError.networkUnreachable)
-        networkNotifier.whenUnreachable = onNetworkUnreachable
+        
     }
 }

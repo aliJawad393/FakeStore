@@ -50,6 +50,7 @@ class ProductsListViewController: UIViewController {
         setupView()
         bindViewModel()
         setupDataSource()
+        viewModel.fetchProrductsList()
     }
 }
 
