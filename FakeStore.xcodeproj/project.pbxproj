@@ -46,6 +46,10 @@
 		4163164027BC07EF000C41E5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163163F27BC07EF000C41E5 /* UIViewController+Ext.swift */; };
 		4163164427BC12BF000C41E5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4163164327BC12BF000C41E5 /* SDWebImage */; };
 		4163164727BC27C5000C41E5 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163164627BC27C5000C41E5 /* ViewControllerFactory.swift */; };
+		4163164A27BC2C87000C41E5 /* ProductsListCoreDataPersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163164927BC2C87000C41E5 /* ProductsListCoreDataPersistanceService.swift */; };
+		4163164D27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163164C27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift */; };
+		4163164F27BC3B83000C41E5 /* ProductsListCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163164E27BC3B83000C41E5 /* ProductsListCoreDataService.swift */; };
+		4163165127BC3D3B000C41E5 /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163165027BC3D3B000C41E5 /* PersistenceError.swift */; };
 		417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39027BBAF7500A88E58 /* AppDelegate.swift */; };
 		417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39227BBAF7500A88E58 /* SceneDelegate.swift */; };
 		417AA39527BBAF7500A88E58 /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39427BBAF7500A88E58 /* ProductsListViewController.swift */; };
@@ -112,6 +116,10 @@
 		4163163D27BC0502000C41E5 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		4163163F27BC07EF000C41E5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		4163164627BC27C5000C41E5 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		4163164927BC2C87000C41E5 /* ProductsListCoreDataPersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListCoreDataPersistanceService.swift; sourceTree = "<group>"; };
+		4163164C27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkPersistanceDecorator.swift; sourceTree = "<group>"; };
+		4163164E27BC3B83000C41E5 /* ProductsListCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListCoreDataService.swift; sourceTree = "<group>"; };
+		4163165027BC3D3B000C41E5 /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
 		417AA38D27BBAF7500A88E58 /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		417AA39027BBAF7500A88E58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		417AA39227BBAF7500A88E58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				416315FF27BBD64F000C41E5 /* NetworkError.swift */,
+				4163165027BC3D3B000C41E5 /* PersistenceError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -321,6 +330,23 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		4163164827BC2C69000C41E5 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				4163164927BC2C87000C41E5 /* ProductsListCoreDataPersistanceService.swift */,
+				4163164E27BC3B83000C41E5 /* ProductsListCoreDataService.swift */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		4163164B27BC3319000C41E5 /* NetworkAndPersistance */ = {
+			isa = PBXGroup;
+			children = (
+				4163164C27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift */,
+			);
+			path = NetworkAndPersistance;
+			sourceTree = "<group>";
+		};
 		417AA38427BBAF7500A88E58 = {
 			isa = PBXGroup;
 			children = (
@@ -344,10 +370,12 @@
 		417AA38F27BBAF7500A88E58 /* FakeStore */ = {
 			isa = PBXGroup;
 			children = (
+				416315E827BBD0B2000C41E5 /* Network */,
+				4163164827BC2C69000C41E5 /* Persistance */,
+				4163164B27BC3319000C41E5 /* NetworkAndPersistance */,
 				4163164527BC27B6000C41E5 /* Factory */,
 				4163163A27BC0115000C41E5 /* Extension */,
 				416315FE27BBD646000C41E5 /* Error */,
-				416315E827BBD0B2000C41E5 /* Network */,
 				416315E527BBC4F9000C41E5 /* Cancellable */,
 				416315E027BBC3FD000C41E5 /* Model */,
 				416315DF27BBC3F4000C41E5 /* View */,
@@ -536,6 +564,7 @@
 			files = (
 				416315E727BBC502000C41E5 /* Cancellable.swift in Sources */,
 				417AA39527BBAF7500A88E58 /* ProductsListViewController.swift in Sources */,
+				4163164F27BC3B83000C41E5 /* ProductsListCoreDataService.swift in Sources */,
 				416315F127BBD0B9000C41E5 /* Router.swift in Sources */,
 				417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */,
 				4163163C27BC012A000C41E5 /* UIFont+Ext.swift in Sources */,
@@ -550,6 +579,9 @@
 				416315EF27BBD0B9000C41E5 /* Parser.swift in Sources */,
 				4163164027BC07EF000C41E5 /* UIViewController+Ext.swift in Sources */,
 				4163160027BBD64F000C41E5 /* NetworkError.swift in Sources */,
+				4163164A27BC2C87000C41E5 /* ProductsListCoreDataPersistanceService.swift in Sources */,
+				4163164D27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift in Sources */,
+				4163165127BC3D3B000C41E5 /* PersistenceError.swift in Sources */,
 				4163161227BBFFED000C41E5 /* ProductsListTableViewCell.swift in Sources */,
 				416315F027BBD0B9000C41E5 /* Service.swift in Sources */,
 				416315F227BBD0B9000C41E5 /* URLRequestConvertible.swift in Sources */,
