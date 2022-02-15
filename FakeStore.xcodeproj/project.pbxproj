@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		416315E227BBC43B000C41E5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E127BBC43B000C41E5 /* Product.swift */; };
+		416315E427BBC4CF000C41E5 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E327BBC4CF000C41E5 /* ProductRepository.swift */; };
+		416315E727BBC502000C41E5 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416315E627BBC502000C41E5 /* Cancellable.swift */; };
 		417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39027BBAF7500A88E58 /* AppDelegate.swift */; };
 		417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39227BBAF7500A88E58 /* SceneDelegate.swift */; };
 		417AA39527BBAF7500A88E58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39427BBAF7500A88E58 /* ViewController.swift */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		416315E127BBC43B000C41E5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		416315E327BBC4CF000C41E5 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		416315E627BBC502000C41E5 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		417AA38D27BBAF7500A88E58 /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		417AA39027BBAF7500A88E58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		417AA39227BBAF7500A88E58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +82,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		416315DE27BBC3EB000C41E5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				417AA39027BBAF7500A88E58 /* AppDelegate.swift */,
+				417AA39227BBAF7500A88E58 /* SceneDelegate.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		416315DF27BBC3F4000C41E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				417AA39427BBAF7500A88E58 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		416315E027BBC3FD000C41E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				416315E127BBC43B000C41E5 /* Product.swift */,
+				416315E327BBC4CF000C41E5 /* ProductRepository.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		416315E527BBC4F9000C41E5 /* Cancellable */ = {
+			isa = PBXGroup;
+			children = (
+				416315E627BBC502000C41E5 /* Cancellable.swift */,
+			);
+			path = Cancellable;
+			sourceTree = "<group>";
+		};
 		417AA38427BBAF7500A88E58 = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +139,10 @@
 		417AA38F27BBAF7500A88E58 /* FakeStore */ = {
 			isa = PBXGroup;
 			children = (
-				417AA39027BBAF7500A88E58 /* AppDelegate.swift */,
-				417AA39227BBAF7500A88E58 /* SceneDelegate.swift */,
-				417AA39427BBAF7500A88E58 /* ViewController.swift */,
+				416315E527BBC4F9000C41E5 /* Cancellable */,
+				416315E027BBC3FD000C41E5 /* Model */,
+				416315DF27BBC3F4000C41E5 /* View */,
+				416315DE27BBC3EB000C41E5 /* Main */,
 				417AA39C27BBAF7600A88E58 /* Assets.xcassets */,
 				417AA39E27BBAF7600A88E58 /* LaunchScreen.storyboard */,
 				417AA3A127BBAF7600A88E58 /* Info.plist */,
@@ -257,10 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				416315E727BBC502000C41E5 /* Cancellable.swift in Sources */,
 				417AA39527BBAF7500A88E58 /* ViewController.swift in Sources */,
 				417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */,
+				416315E227BBC43B000C41E5 /* Product.swift in Sources */,
 				417AA39B27BBAF7500A88E58 /* FakeStore.xcdatamodeld in Sources */,
 				417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */,
+				416315E427BBC4CF000C41E5 /* ProductRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
