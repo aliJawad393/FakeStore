@@ -25,6 +25,15 @@ class ProductsListViewController: UIViewController {
         return view
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .gray
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+        return indicator
+    }()
+    
     //MARK: Init
     init(viewModel: ProductsListVM) {
         self.viewModel = viewModel
@@ -49,6 +58,12 @@ private extension ProductsListViewController {
     private func setupView() {
         view.addSubview(tableView)
         view.layoutSubview(tableView)
+        
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
 
@@ -58,12 +73,14 @@ private extension ProductsListViewController {
         viewModel.productsList
             .receive(on: RunLoop.main)
             .sink {[weak self] items in
+                self?.activityIndicator.stopAnimating()
                 self?.appendItems(items)
             }.store(in: &subscriptions)
         
         viewModel.error
             .receive(on: RunLoop.main)
             .sink {[weak self] error  in
+                self?.activityIndicator.stopAnimating()
                 self?.alert("Error", message: error.localizedDescription)
             }.store(in: &subscriptions)
     }
