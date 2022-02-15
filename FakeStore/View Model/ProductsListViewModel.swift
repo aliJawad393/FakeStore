@@ -41,13 +41,16 @@ final class ProductsListViewModel: ProductsListVM {
     private let dataSource: ProductRepository
     let productsList = PassthroughSubject<[ProductPresenter], Never>()
     let error = PassthroughSubject<Error, Never>()
+    private var networkNotifier: NetworkNotifier
     
     //MARK: Init
-    init(dataSource: ProductRepository) {
+    init(dataSource: ProductRepository, networkNotifier: NetworkNotifier) {
         self.dataSource = dataSource
+        self.networkNotifier = networkNotifier
+        self.networkNotifier.whenReachable = onNetworkReachable
     }
     
-    func fetProrductsList() {
+    func fetchProrductsList() {
         dataSource.getProductsList {[weak self] response in
             switch response {
             case .success(let products):
@@ -59,5 +62,19 @@ final class ProductsListViewModel: ProductsListVM {
                 self?.error.send(err)
             }
         }
+    }
+}
+
+//MARK: Netwwork Reachability
+private extension ProductsListViewModel {
+    func onNetworkReachable() {
+        print("Network reachable")
+        fetchProrductsList()
+    }
+    
+    func onNetworkUnreachable() {
+        print("Network unreachable")
+        error.send(NetworkError.networkUnreachable)
+        networkNotifier.whenUnreachable = onNetworkUnreachable
     }
 }
