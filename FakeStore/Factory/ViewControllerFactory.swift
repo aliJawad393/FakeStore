@@ -29,9 +29,11 @@ final class iOSViewControllerFactory: ViewControllerFactory {
         context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
         let persistanceService = ProductsListCoreDataPersistanceService(managedObjectContext: context)
         
-        let dataSource: ProductRepository = networkNotifier.isReachable ? ProductNetworkPersistanceDecorator(network: networkSource, persistence: persistanceService) : ProductsListCoreDataService(managedObjectContext: context)
-        let viewModel = ProductsListViewModel(dataSource: dataSource, networkNotifier: networkNotifier)
-        return ProductsListViewController(viewModel: viewModel, tableViewDelegate: TableViewDelegate(totalPriceObservable: viewModel.totalPrice.eraseToAnyPublisher()))
+        let coreDateWrapper = ProductNetworkPersistanceDecorator(network: networkSource, persistence: persistanceService)
+        let userDefaultWrapper = ProductUserDefaultDecorator(network: coreDateWrapper, userDefaultService: SyncDateUserDefaultService())
+        let dataSource: ProductRepository = networkNotifier.isReachable ? userDefaultWrapper : ProductsListCoreDataService(managedObjectContext: context)
+        let viewModel = ProductsListViewModel(dataSource: dataSource, userDefaultService: SyncDateUserDefaultService(), networkNotifier: networkNotifier)
+        return ProductsListViewController(viewModel: viewModel, tableViewDelegate: TableViewDelegate(totalPriceObservable: viewModel.totalPrice.eraseToAnyPublisher(), lastSyncDateObservable: viewModel.lastSyncDate.eraseToAnyPublisher()))
 
     }
     

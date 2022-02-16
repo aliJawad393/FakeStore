@@ -1,5 +1,5 @@
 //
-//  ProductNetworkPersistanceDecorator.swift
+//  ProductUserDefaultDecorator.swift
 //  FakeStore
 //
 //  Created by Ali Jawad on 16/02/2022.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-final class ProductNetworkPersistanceDecorator: ProductRepository {
+final class ProductUserDefaultDecorator: ProductRepository {
    /*
-    Fetches data from provided data source and saves to local database
+    Fetches data from provided data source and updates last sync date
     */
     //MARK: Vars
     private let network: ProductRepository
-    private let persistance: ProductPersistance
+    private let userDefaultService: SyncDateUserDefaultService
     
     //MARK: Init
-    init(network: ProductRepository, persistence: ProductPersistance) {
+    init(network: ProductRepository, userDefaultService: SyncDateUserDefaultService) {
         self.network = network
-        self.persistance = persistence
+        self.userDefaultService = userDefaultService
     }
     
     func getProductsList(response: @escaping ((Result<[Product], Error>) -> Void)) -> Cancellable? {
@@ -29,8 +29,7 @@ final class ProductNetworkPersistanceDecorator: ProductRepository {
             case .success(let products):
                 response(.success(products))
                 
-                try? self?.persistance.deleteAllProducts()
-                try? self?.persistance.saveProducts(products)
+                self?.userDefaultService.updateLastSyncDate(SyncDate(date: Date()))
             }
         }
     }

@@ -34,10 +34,12 @@ protocol ProductsListVM {
     var productsList: PassthroughSubject<[ProductsListTableViewCellViewModel], Never> {get}
     var error: PassthroughSubject<Error, Never> {get}
     var totalPrice: CurrentValueSubject<Float, Never> {get}
+    var lastSyncDate: CurrentValueSubject<String, Never> {get}
     func fetchProrductsList()
 }
 
 final class ProductsListViewModel: ProductsListVM {
+    
     
     //MARK: Vars
     private let dataSource: ProductRepository
@@ -46,11 +48,15 @@ final class ProductsListViewModel: ProductsListVM {
     let totalPrice = CurrentValueSubject<Float, Never>(0)
     private var networkNotifier: NetworkNotifier
     private var dataItems: [Product] = []
+    private let userDefaultService: SyncDateUserDefaultService
+    var lastSyncDate = CurrentValueSubject<String, Never>("")
+
     
     //MARK: Init
-    init(dataSource: ProductRepository, networkNotifier: NetworkNotifier) {
+    init(dataSource: ProductRepository, userDefaultService: SyncDateUserDefaultService, networkNotifier: NetworkNotifier) {
         self.dataSource = dataSource
         self.networkNotifier = networkNotifier
+        self.userDefaultService = userDefaultService
         self.networkNotifier.whenReachable = onNetworkReachable
         self.networkNotifier.whenUnreachable = onNetworkUnreachable
     }
@@ -67,6 +73,7 @@ final class ProductsListViewModel: ProductsListVM {
                 }
                 self?.dataItems = products
                 self?.productsList.send(mappedProucts)
+                self?.lastSyncDate.send(self?.userDefaultService.getLastSyncDate()?.date.toString() ?? "")
             case .failure(let err):
                 self?.error.send(err)
             }

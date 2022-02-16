@@ -53,6 +53,12 @@
 		4177A7D627BD068400843A1A /* ProductsListTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7D527BD068400843A1A /* ProductsListTableViewCellViewModel.swift */; };
 		4177A7D827BD5D3A00843A1A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7D727BD5D3A00843A1A /* HeaderView.swift */; };
 		4177A7DC27BD6F6600843A1A /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7DB27BD6F6600843A1A /* TableViewDelegate.swift */; };
+		4177A7E027BD7C8800843A1A /* SyncDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7DF27BD7C8800843A1A /* SyncDate.swift */; };
+		4177A7E427BD7CDE00843A1A /* SyncDateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7E327BD7CDE00843A1A /* SyncDateRepository.swift */; };
+		4177A7E727BD7D9B00843A1A /* SyncDateUserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7E627BD7D9B00843A1A /* SyncDateUserDefaultService.swift */; };
+		4177A7E927BD7F6F00843A1A /* ProductUserDefaultDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7E827BD7F6F00843A1A /* ProductUserDefaultDecorator.swift */; };
+		4177A7EB27BD849C00843A1A /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7EA27BD849C00843A1A /* FooterView.swift */; };
+		4177A7ED27BD866A00843A1A /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4177A7EC27BD866A00843A1A /* Date+Ext.swift */; };
 		417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39027BBAF7500A88E58 /* AppDelegate.swift */; };
 		417AA39327BBAF7500A88E58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39227BBAF7500A88E58 /* SceneDelegate.swift */; };
 		417AA39527BBAF7500A88E58 /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AA39427BBAF7500A88E58 /* ProductsListViewController.swift */; };
@@ -126,6 +132,12 @@
 		4177A7D527BD068400843A1A /* ProductsListTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		4177A7D727BD5D3A00843A1A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4177A7DB27BD6F6600843A1A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
+		4177A7DF27BD7C8800843A1A /* SyncDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDate.swift; sourceTree = "<group>"; };
+		4177A7E327BD7CDE00843A1A /* SyncDateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDateRepository.swift; sourceTree = "<group>"; };
+		4177A7E627BD7D9B00843A1A /* SyncDateUserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDateUserDefaultService.swift; sourceTree = "<group>"; };
+		4177A7E827BD7F6F00843A1A /* ProductUserDefaultDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUserDefaultDecorator.swift; sourceTree = "<group>"; };
+		4177A7EA27BD849C00843A1A /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		4177A7EC27BD866A00843A1A /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		417AA38D27BBAF7500A88E58 /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		417AA39027BBAF7500A88E58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		417AA39227BBAF7500A88E58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +196,7 @@
 				417AA39427BBAF7500A88E58 /* ProductsListViewController.swift */,
 				4163161127BBFFED000C41E5 /* ProductsListTableViewCell.swift */,
 				4177A7D727BD5D3A00843A1A /* HeaderView.swift */,
+				4177A7EA27BD849C00843A1A /* FooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,8 +204,8 @@
 		416315E027BBC3FD000C41E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				416315E127BBC43B000C41E5 /* Product.swift */,
-				416315E327BBC4CF000C41E5 /* ProductRepository.swift */,
+				4177A7E127BD7CB900843A1A /* Product  */,
+				4177A7E227BD7CC700843A1A /* Sync Date */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +340,7 @@
 				4163163B27BC012A000C41E5 /* UIFont+Ext.swift */,
 				4163163D27BC0502000C41E5 /* UIView+Ext.swift */,
 				4163163F27BC07EF000C41E5 /* UIViewController+Ext.swift */,
+				4177A7EC27BD866A00843A1A /* Date+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -352,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				4163164C27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift */,
+				4177A7E827BD7F6F00843A1A /* ProductUserDefaultDecorator.swift */,
 			);
 			path = NetworkAndPersistance;
 			sourceTree = "<group>";
@@ -362,6 +377,32 @@
 				4177A7DB27BD6F6600843A1A /* TableViewDelegate.swift */,
 			);
 			path = Delegate;
+			sourceTree = "<group>";
+		};
+		4177A7E127BD7CB900843A1A /* Product  */ = {
+			isa = PBXGroup;
+			children = (
+				416315E127BBC43B000C41E5 /* Product.swift */,
+				416315E327BBC4CF000C41E5 /* ProductRepository.swift */,
+			);
+			path = "Product ";
+			sourceTree = "<group>";
+		};
+		4177A7E227BD7CC700843A1A /* Sync Date */ = {
+			isa = PBXGroup;
+			children = (
+				4177A7DF27BD7C8800843A1A /* SyncDate.swift */,
+				4177A7E327BD7CDE00843A1A /* SyncDateRepository.swift */,
+			);
+			path = "Sync Date";
+			sourceTree = "<group>";
+		};
+		4177A7E527BD7D8000843A1A /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				4177A7E627BD7D9B00843A1A /* SyncDateUserDefaultService.swift */,
+			);
+			path = UserDefault;
 			sourceTree = "<group>";
 		};
 		417AA38427BBAF7500A88E58 = {
@@ -387,6 +428,7 @@
 		417AA38F27BBAF7500A88E58 /* FakeStore */ = {
 			isa = PBXGroup;
 			children = (
+				4177A7E527BD7D8000843A1A /* UserDefault */,
 				416315E827BBD0B2000C41E5 /* Network */,
 				4163164827BC2C69000C41E5 /* Persistance */,
 				4163164B27BC3319000C41E5 /* NetworkAndPersistance */,
@@ -579,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4177A7E727BD7D9B00843A1A /* SyncDateUserDefaultService.swift in Sources */,
 				416315E727BBC502000C41E5 /* Cancellable.swift in Sources */,
 				417AA39527BBAF7500A88E58 /* ProductsListViewController.swift in Sources */,
 				4163164F27BC3B83000C41E5 /* ProductsListCoreDataService.swift in Sources */,
@@ -586,12 +629,16 @@
 				417AA39127BBAF7500A88E58 /* AppDelegate.swift in Sources */,
 				4163163C27BC012A000C41E5 /* UIFont+Ext.swift in Sources */,
 				416315FD27BBD525000C41E5 /* ProductsNetworkService.swift in Sources */,
+				4177A7EB27BD849C00843A1A /* FooterView.swift in Sources */,
 				416315F527BBD11D000C41E5 /* ProductRouter.swift in Sources */,
 				416315FA27BBD1BE000C41E5 /* Product+Decodable.swift in Sources */,
 				4163160227BBD71E000C41E5 /* CancellableDataTask.swift in Sources */,
 				4177A7DC27BD6F6600843A1A /* TableViewDelegate.swift in Sources */,
 				4163160827BBE847000C41E5 /* NetworkNotifier.swift in Sources */,
+				4177A7E027BD7C8800843A1A /* SyncDate.swift in Sources */,
+				4177A7E927BD7F6F00843A1A /* ProductUserDefaultDecorator.swift in Sources */,
 				4163160527BBE183000C41E5 /* ProductsListViewModel.swift in Sources */,
+				4177A7E427BD7CDE00843A1A /* SyncDateRepository.swift in Sources */,
 				4163163E27BC0502000C41E5 /* UIView+Ext.swift in Sources */,
 				416315E227BBC43B000C41E5 /* Product.swift in Sources */,
 				416315EF27BBD0B9000C41E5 /* Parser.swift in Sources */,
@@ -601,6 +648,7 @@
 				4177A7D627BD068400843A1A /* ProductsListTableViewCellViewModel.swift in Sources */,
 				4163164D27BC334D000C41E5 /* ProductNetworkPersistanceDecorator.swift in Sources */,
 				4177A7D827BD5D3A00843A1A /* HeaderView.swift in Sources */,
+				4177A7ED27BD866A00843A1A /* Date+Ext.swift in Sources */,
 				4163165127BC3D3B000C41E5 /* PersistenceError.swift in Sources */,
 				4163161227BBFFED000C41E5 /* ProductsListTableViewCell.swift in Sources */,
 				416315F027BBD0B9000C41E5 /* Service.swift in Sources */,
