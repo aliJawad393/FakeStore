@@ -30,8 +30,8 @@ final class iOSViewControllerFactory: ViewControllerFactory {
         let persistanceService = ProductsListCoreDataPersistanceService(managedObjectContext: context)
         
         let dataSource: ProductRepository = networkNotifier.isReachable ? ProductNetworkPersistanceDecorator(network: networkSource, persistence: persistanceService) : ProductsListCoreDataService(managedObjectContext: context)
-        
-        return ProductsListViewController(viewModel: ProductsListViewModel(dataSource: dataSource, networkNotifier: networkNotifier))
+        let viewModel = ProductsListViewModel(dataSource: dataSource, networkNotifier: networkNotifier)
+        return ProductsListViewController(viewModel: viewModel, tableViewDelegate: TableViewDelegate(totalPriceObservable: viewModel.totalPrice.eraseToAnyPublisher()))
 
     }
     

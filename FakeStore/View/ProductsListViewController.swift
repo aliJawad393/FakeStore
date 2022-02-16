@@ -14,6 +14,7 @@ class ProductsListViewController: UIViewController {
     private let viewModel: ProductsListVM
     private var dataSource: UITableViewDiffableDataSource<Int, ProductsListTableViewCellViewModel>!
     private var subscriptions = [AnyCancellable]()
+    private let tableViewDelegate: UITableViewDelegate
     
     //MARK: UIView Components
     private lazy var tableView: UITableView = {
@@ -22,7 +23,7 @@ class ProductsListViewController: UIViewController {
         view.tableFooterView = UIView()
         view.register(ProductsListTableViewCell.self, forCellReuseIdentifier: "cell")
         view.separatorInset = .zero
-        view.delegate = self
+        view.delegate = tableViewDelegate
         return view
     }()
     
@@ -36,8 +37,9 @@ class ProductsListViewController: UIViewController {
     }()
     
     //MARK: Init
-    init(viewModel: ProductsListVM) {
+    init(viewModel: ProductsListVM, tableViewDelegate: UITableViewDelegate) {
         self.viewModel = viewModel
+        self.tableViewDelegate = tableViewDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -66,12 +68,6 @@ private extension ProductsListViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-}
-
-extension ProductsListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return HeaderView(priceObservable: viewModel.totalPrice.eraseToAnyPublisher())
     }
 }
 
