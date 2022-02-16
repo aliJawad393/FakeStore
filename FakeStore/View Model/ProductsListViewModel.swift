@@ -30,18 +30,8 @@ struct ProductPresenter {
     }
 }
 
-extension ProductPresenter: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: ProductPresenter, rhs: ProductPresenter) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
 protocol ProductsListVM {
-    var productsList: PassthroughSubject<[ProductPresenter], Never> {get}
+    var productsList: PassthroughSubject<[ProductsListTableViewCellViewModel], Never> {get}
     var error: PassthroughSubject<Error, Never> {get}
     func fetchProrductsList()
 }
@@ -50,7 +40,7 @@ final class ProductsListViewModel: ProductsListVM {
     
     //MARK: Vars
     private let dataSource: ProductRepository
-    let productsList = PassthroughSubject<[ProductPresenter], Never>()
+    let productsList = PassthroughSubject<[ProductsListTableViewCellViewModel], Never>()
     let error = PassthroughSubject<Error, Never>()
     private var networkNotifier: NetworkNotifier
     
@@ -67,7 +57,7 @@ final class ProductsListViewModel: ProductsListVM {
             switch response {
             case .success(let products):
                 let mappedProucts = products.map{
-                    ProductPresenter(product: $0)
+                    ProductsListTableViewCellViewModel(product: ProductPresenter(product: $0))
                 }
                 self?.productsList.send(mappedProucts)
             case .failure(let err):

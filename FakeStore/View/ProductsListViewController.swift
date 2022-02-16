@@ -12,7 +12,7 @@ class ProductsListViewController: UIViewController {
     
     //MARK: Vars
     private let viewModel: ProductsListVM
-    private var dataSource: UITableViewDiffableDataSource<Int, ProductPresenter>!
+    private var dataSource: UITableViewDiffableDataSource<Int, ProductsListTableViewCellViewModel>!
     private var subscriptions = [AnyCancellable]()
     
     //MARK: UIView Components
@@ -87,20 +87,20 @@ private extension ProductsListViewController {
     }
     
     private func setupDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, ProductPresenter>(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+        dataSource = UITableViewDiffableDataSource<Int, ProductsListTableViewCellViewModel>(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             if let cell = cell as? ProductsListTableViewCell {
-                cell.setData(data: itemIdentifier)
+                cell.setViewModel(viewModel: itemIdentifier)
             }
             return cell
         })
         
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ProductPresenter>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, ProductsListTableViewCellViewModel>()
         snapshot.appendSections([0])
         dataSource.apply(snapshot)
     }
     
-    private func appendItems(_ items: [ProductPresenter]) {
+    private func appendItems(_ items: [ProductsListTableViewCellViewModel]) {
         var snapshot = dataSource.snapshot()
         snapshot.appendItems(items, toSection: 0)
         dataSource.apply(snapshot)
