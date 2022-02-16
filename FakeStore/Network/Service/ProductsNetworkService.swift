@@ -16,6 +16,7 @@ final class ProductsNetworkService: Service, ProductRepository {
                 response(.failure(error))
             case .success(let data):
                 if let products = self?.parser.parseResponse(data: data.0, response: [Product].self) {
+                    print("Data fetch source: Network")
                     response(.success(products))
                 } else {
                     response(.failure(NetworkError.parsingFailed))

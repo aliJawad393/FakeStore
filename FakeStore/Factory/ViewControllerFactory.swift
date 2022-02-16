@@ -31,8 +31,9 @@ final class iOSViewControllerFactory: ViewControllerFactory {
         
         let coreDateWrapper = ProductNetworkPersistanceDecorator(network: networkSource, persistence: persistanceService)
         let userDefaultWrapper = ProductUserDefaultDecorator(network: coreDateWrapper, userDefaultService: SyncDateUserDefaultService())
-        let dataSource: ProductRepository = networkNotifier.isReachable ? userDefaultWrapper : ProductsListCoreDataService(managedObjectContext: context)
-        let viewModel = ProductsListViewModel(dataSource: dataSource, userDefaultService: SyncDateUserDefaultService(), networkNotifier: networkNotifier)
+
+        let composite = ProductListComposite(primarySource: userDefaultWrapper, secondarySource: ProductsListCoreDataService(managedObjectContext: context))
+        let viewModel = ProductsListViewModel(dataSource: composite, userDefaultService: SyncDateUserDefaultService(), networkNotifier: networkNotifier)
         return ProductsListViewController(viewModel: viewModel, tableViewDelegate: TableViewDelegate(totalPriceObservable: viewModel.totalPrice.eraseToAnyPublisher(), lastSyncDateObservable: viewModel.lastSyncDate.eraseToAnyPublisher()))
 
     }

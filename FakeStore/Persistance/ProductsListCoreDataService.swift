@@ -27,6 +27,7 @@ final class ProductsListCoreDataService: ProductRepository {
                 let productsReturn = results.map {item in
                     Product(coreDataItem: item)
                 }
+                print("Data fetch source: Local database")
                 response(.success(productsReturn))
             } else {
                 response(.failure(PersistanceError.notFound))
