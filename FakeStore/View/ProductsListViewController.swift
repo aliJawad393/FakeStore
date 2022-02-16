@@ -22,6 +22,7 @@ class ProductsListViewController: UIViewController {
         view.tableFooterView = UIView()
         view.register(ProductsListTableViewCell.self, forCellReuseIdentifier: "cell")
         view.separatorInset = .zero
+        view.delegate = self
         return view
     }()
     
@@ -59,12 +60,18 @@ private extension ProductsListViewController {
     private func setupView() {
         view.addSubview(tableView)
         view.layoutSubview(tableView)
-        
+        title = "Products"
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+}
+
+extension ProductsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return HeaderView(priceObservable: viewModel.totalPrice.eraseToAnyPublisher())
     }
 }
 

@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 import SDWebImage
+import Combine
 
 final class ProductsListTableViewCell: UITableViewCell {
     
     //MARK: Vars
     private var cancellable: Cancellable?
     private var viewModel: ProductsListTableViewCellViewModel?
+    private var subscriptions = [AnyCancellable]()
     
     //MARK: UIView Components
     private lazy var verticalStack: UIStackView = {
@@ -73,9 +75,9 @@ final class ProductsListTableViewCell: UITableViewCell {
     
     private lazy var buttonAddRemove: UIButton = {
         let view = UIButton(type: .system)
-        view.setTitle("Add", for: .normal)
         view.titleLabel?.font = UIFont.montserratMedium.withAdjustableSize(20)
         view.setTitleColor(.systemCyan, for: .normal)
+        view.addTarget(self, action: #selector(addRemoveHandler(sender:)), for: .touchUpInside)
         return view
     }()
     
@@ -106,7 +108,15 @@ final class ProductsListTableViewCell: UITableViewCell {
     //MARK: Internal Methods
     func setViewModel(viewModel: ProductsListTableViewCellViewModel) {
         self.viewModel = viewModel
-        self.setData(data: viewModel.product)
+        setData(data: viewModel.product)
+        buttonAddRemove.setTitle(viewModel.buttonTitle.value, for: .normal)
+
+        bindViewModel(viewModel: viewModel)
+    }
+    
+    //MARK: Action
+    @objc func addRemoveHandler(sender: UIButton) {
+        viewModel?.didTapButton()
     }
 }
 
@@ -117,7 +127,7 @@ private extension ProductsListTableViewCell {
         labelPrice.text = data.price
         labelDescription.text = data.description
         labelCategory.text = data.category
-        imageViewPost.sd_setImage(with: data.imageURL, placeholderImage: nil, options: [SDWebImageOptions.progressiveLoad], context: nil)
+        imageViewPost.sd_setImage(with: data.imageURL, placeholderImage: nil, options: [SDWebImageOptions.progressiveLoad], context: nil) // Alternatively, image download task can be delegated to viewModel and load into imageView when completed
     }
     
     private func viewsSideBySide(leftView: UIView, rightView: UIView) -> UIStackView {
@@ -136,5 +146,16 @@ private extension ProductsListTableViewCell {
         stackView.addArrangedSubViews([leftView,
                                       rightView])
         return stackView
+    }
+}
+
+//MARK: ViewModel Binding
+private extension ProductsListTableViewCell {
+    private func bindViewModel(viewModel: ProductsListTableViewCellViewModel) {
+        viewModel.buttonTitle
+            .receive(on: RunLoop.main)
+            .sink {[weak self] value in
+                self?.buttonAddRemove.setTitle(value, for: .normal)
+            }.store(in: &subscriptions)
     }
 }

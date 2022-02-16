@@ -33,6 +33,7 @@ struct ProductPresenter {
 protocol ProductsListVM {
     var productsList: PassthroughSubject<[ProductsListTableViewCellViewModel], Never> {get}
     var error: PassthroughSubject<Error, Never> {get}
+    var totalPrice: CurrentValueSubject<Float, Never> {get}
     func fetchProrductsList()
 }
 
@@ -42,7 +43,9 @@ final class ProductsListViewModel: ProductsListVM {
     private let dataSource: ProductRepository
     let productsList = PassthroughSubject<[ProductsListTableViewCellViewModel], Never>()
     let error = PassthroughSubject<Error, Never>()
+    let totalPrice = CurrentValueSubject<Float, Never>(0)
     private var networkNotifier: NetworkNotifier
+    private var dataItems: [Product] = []
     
     //MARK: Init
     init(dataSource: ProductRepository, networkNotifier: NetworkNotifier) {
@@ -59,6 +62,10 @@ final class ProductsListViewModel: ProductsListVM {
                 let mappedProucts = products.map{
                     ProductsListTableViewCellViewModel(product: ProductPresenter(product: $0))
                 }
+                mappedProucts.forEach { item in
+                    item.delegate = self
+                }
+                self?.dataItems = products
                 self?.productsList.send(mappedProucts)
             case .failure(let err):
                 self?.error.send(err)
@@ -70,14 +77,41 @@ final class ProductsListViewModel: ProductsListVM {
 //MARK: Netwwork Reachability
 private extension ProductsListViewModel {
     func onNetworkReachable() {
-        print("Network reachable")
         fetchProrductsList()
         
     }
     
     func onNetworkUnreachable() {
-        print("Network unreachable")
         error.send(NetworkError.networkUnreachable)
         
     }
 }
+
+//MARK: ProductsListTableViewCellViewModelDelegate
+extension ProductsListViewModel: ProductsListTableViewCellViewModelDelegate {
+    func didSeletedItemWithId(_ id: Int) {
+        let item = dataItems.filter {
+            $0.id == id
+        }.first
+        
+        if let item = item {
+            let prevTotal = totalPrice.value
+            totalPrice.send(prevTotal + item.price)
+        }
+    }
+    
+    func didRemoveItemWithId(_ id: Int) {
+        let item = dataItems.filter {
+            $0.id == id
+        }.first
+        
+        if let item = item {
+            let prevTotal = totalPrice.value
+            let newPrice = prevTotal - item.price
+            totalPrice.send(newPrice >= 0 ? newPrice : 0)
+        }
+    }
+    
+    
+}
+
